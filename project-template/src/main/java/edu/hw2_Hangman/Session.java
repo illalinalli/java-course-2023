@@ -15,6 +15,20 @@ public class Session {
         this.maxAttempts = maxAttempts;
         this.attempts = 0;
     }
+    public String getAnswer() {
+        return answer;
+    }
+    public char[] getUserAnswer() {
+        return userAnswer;
+    }
+
+    public int getAttempts() {
+        return attempts;
+    }
+
+    public int getMaxAttempts() {
+        return maxAttempts;
+    }
 
     public GuessResult guess(char guess) {
         boolean hit = false;
@@ -27,20 +41,20 @@ public class Session {
         attempts++;
         if (hit) {
             if (String.valueOf(userAnswer).equals(answer)) {
-                return new GuessResult.Win(userAnswer, attempts, maxAttempts, "You won!");
+                return GuessResult.WIN;
             } else {
-                return new GuessResult.SuccessfulGuess(userAnswer, attempts, maxAttempts, "Hit!");
+                return GuessResult.SUCCESSFUL_GUESS;
             }
         } else {
             if (attempts >= maxAttempts) {
-                return new GuessResult.Defeat(answer.toCharArray(), attempts, maxAttempts, "You lost!");
+                return GuessResult.DEFEAT;
             } else {
-                return new GuessResult.FailedGuess(userAnswer, attempts, maxAttempts, "Missed, mistake " + attempts + " out of " + maxAttempts + ".");
+                return GuessResult.FAILED_GUESS;
             }
         }
     }
 
-    public GuessResult giveUp() {
-        return new GuessResult.Defeat(answer.toCharArray(), attempts, maxAttempts, "You gave up!");
-    }
+   /* public GuessResult giveUp() {
+        return GuessResult.GAVE_UP;
+    }*/
 }

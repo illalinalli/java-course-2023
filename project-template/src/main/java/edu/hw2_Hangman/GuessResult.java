@@ -1,13 +1,19 @@
 package edu.hw2_Hangman;
 
-public sealed interface GuessResult {
-    char[] state();
-    int attempt();
-    int maxAttempts();
-    String message();
+public enum GuessResult {
+    WIN("You won!"),
+    DEFEAT("You lost!"),
+    SUCCESSFUL_GUESS("Hit!"),
+    FAILED_GUESS(""),
+    GAVE_UP("You gave up!");
 
-    record Defeat(char[] state, int attempt, int maxAttempts, String message) implements GuessResult {}
-    record Win(char[] state, int attempt, int maxAttempts, String message) implements GuessResult {}
-    record SuccessfulGuess(char[] state, int attempt, int maxAttempts, String message) implements GuessResult {}
-    record FailedGuess(char[] state, int attempt, int maxAttempts, String message) implements GuessResult {}
+    private final String message;
+
+    GuessResult(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
