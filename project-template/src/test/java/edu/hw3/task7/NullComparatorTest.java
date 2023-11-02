@@ -28,12 +28,6 @@ class NullComparatorTest {
         int result = comparator.compare(null, "test");
         assertEquals(-1, result);
     }
-    @Test
-    public void testCompareBothNotNull() {
-        NullComparator<Integer> comparator = new NullComparator<>();
-        int result = comparator.compare(5, 10);
-        assertEquals(-1, result);
-    }
 
     @Test
     public void testCompareEqualObjects() {

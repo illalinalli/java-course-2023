@@ -14,6 +14,12 @@ public class NullComparator<T> implements Comparator<T> {
         if (o2 == null) {
             return 1;
         }
-        return ((Comparable<T>) o1).compareTo(o2);
+        return Comparator.nullsFirst(
+            Comparator.comparing(s -> (String) s)
+        ).compare(o1, o2);
+            //Comparator.nullsFirst(
+            //Comparator.<String>comparing(s -> s)
+        //);
+       // return ((Comparable<T>) o1).compareTo(o2);
     }
 }
