@@ -16,10 +16,10 @@ public sealed interface Expr {
             return  -expr.evaluate();
         }
     }
-    record Exponent(Expr base, double power) implements Expr {
+    record Exponent(Expr base, Expr power) implements Expr {
         @Override
         public double evaluate(){
-            return Math.pow(base.evaluate(), power);
+            return Math.pow(base.evaluate(), power.evaluate());
         }
     }
     record Addition(Expr op1, Expr op2) implements Expr {
